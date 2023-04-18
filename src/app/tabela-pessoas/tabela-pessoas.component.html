@@ -1,0 +1,31 @@
+<mat-table [dataSource]="pessoas">
+
+    <ng-container matColumnDef="nome">
+      <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+      <mat-cell *matCellDef="let pessoa"> {{ pessoa.nome }} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> E-mail </mat-header-cell>
+      <mat-cell *matCellDef="let pessoa"> {{ pessoa.email }} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="cidade">
+      <mat-header-cell *matHeaderCellDef> Cidade </mat-header-cell>
+      <mat-cell *matCellDef="let pessoa"> {{ pessoa.cidade }} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="acoes">
+      <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+      <mat-cell *matCellDef="let pessoa">
+        <button mat-icon-button (click)="verDetalhes(pessoa)">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  
+  </mat-table>
+  
