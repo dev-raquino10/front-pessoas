@@ -1,0 +1,31 @@
+#navbarText{
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 0;
+    margin: 0;
+    margin-bottom: 0;
+    box-sizing: border-box;
+}
+
+#navbarText:hover{
+    transition: 0.5s;
+    opacity: 1;
+    background-color: #0b69d4;
+    margin-bottom: 0;
+}
+
+#menus {
+    background-color:  #e7e6e4;
+
+}
+
+#menus:hover {
+    background-color:  #878484;
+    color: white;
+    
+}
+
+#sidebar-nav {
+    background-color:  #e7e6e4;
+}

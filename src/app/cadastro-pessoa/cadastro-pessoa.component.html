@@ -1,0 +1,53 @@
+<form (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome:</label>
+      <input type="text" class="form-control" id="nome" [(ngModel)]="novaPessoa['nome']" name="nome" required>
+    </div>
+    <div class="mb-3">
+      <label for="nomeCompleto" class="form-label">Nome completo:</label>
+      <input type="text" class="form-control" id="nomeCompleto" [(ngModel)]="novaPessoa['nomeCompleto']" name="nomeCompleto" required>
+    </div>
+    <div class="mb-3">
+      <label for="nomeFamilia" class="form-label">Nome de família:</label>
+      <input type="text" class="form-control" id="nomeFamilia" [(ngModel)]="novaPessoa['nomeFamilia']" name="nomeFamilia" required>
+    </div>
+    <div class="mb-3">
+      <label for="grupo" class="form-label">Grupo:</label>
+      <input type="text" class="form-control" id="grupo" [(ngModel)]="novaPessoa['grupo']" name="grupo" required>
+    </div>
+    <div class="mb-3">
+      <label for="privilegio" class="form-label">Privilégio:</label>
+      <input type="text" class="form-control" id="privilegio" [(ngModel)]="novaPessoa['privilegio']" name="privilegio" required>
+    </div>
+    <div class="mb-3">
+      <label for="tipoPublicador" class="form-label">Tipo de publicador:</label>
+      <input type="text" class="form-control" id="tipoPublicador" [(ngModel)]="novaPessoa['tipoPublicador']" name="tipoPublicador" required>
+    </div>
+    <div class="mb-3">
+      <label for="dtNascimento" class="form-label">Data de nascimento:</label>
+      <input type="date" class="form-control" id="dtNascimento" [(ngModel)]="novaPessoa['dtNascimento']" name="dtNascimento" required>
+    </div>
+    <div class="mb-3">
+      <label for="dtBatismo" class="form-label">Data do batismo:</label>
+      <input type="date" class="form-control" id="dtBatismo" [(ngModel)]="novaPessoa['dtBatismo']" name="dtBatismo" required>
+    </div>
+    <div class="mb-3">
+      <label for="sexo" class="form-label">Sexo:</label>
+      <select class="form-select" id="sexo" [(ngModel)]="novaPessoa['sexo']" name="sexo" required>
+        <option value="M">Masculino</option>
+        <option value="F">Feminino</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="telefone" class="form-label">Telefone:</label>
+      <input type="text" class="form-control" id="telefone" [(ngModel)]="novaPessoa.telefone" name="telefone">
+
+    </div>
+    <div class="mb-3">
+      <label for="endereco" class="form-label">Endereço:</label>
+      <input type="text" class="form-control" id="endereco" [(ngModel)]="novaPessoa.endereco" name="endereco">
+    </div>
+  <button type="submit" class="btn btn-primary">Cadastrar</button>
+  
+  </form>
+  

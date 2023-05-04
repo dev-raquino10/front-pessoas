@@ -19,4 +19,8 @@ export class PessoaService {
     const urlPessoa = `${this.baseUrl}/${id}`;
     return this.http.get<Pessoa>(urlPessoa);
   }
+
+  cadastrarPessoa(pessoa: Pessoa): Observable<Pessoa> {
+    return this.http.post<Pessoa>(this.baseUrl, pessoa);
+  }
 }
