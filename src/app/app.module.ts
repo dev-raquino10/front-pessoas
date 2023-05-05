@@ -12,6 +12,7 @@ import { PessoaService } from './pessoa.service';
 import { CadastroPessoaComponent } from './pessoas/cadastro-pessoa/cadastro-pessoa.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AppHomeComponent } from './app-home/app-home.component';
+import { ModalPessoasComponent } from './pessoas/modal-pessoas/modal-pessoas.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AppHomeComponent } from './app-home/app-home.component';
     ListaPessoasComponent,
     CadastroPessoaComponent,
     SidebarComponent,
-    AppHomeComponent
+    AppHomeComponent,
+    ModalPessoasComponent
   ],
   imports: [
     BrowserModule,

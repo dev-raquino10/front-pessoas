@@ -12,9 +12,10 @@ import { Router } from '@angular/router';
 export class ListaPessoasComponent implements OnInit {
 
   pessoas: Pessoa[] = [];
-  grupos: string[] = ['Campesina', 'Filipini', 'Guadalupe', 'Salão do reino', 'Santina da Costa', 'Umuarama', 'Vila Yara', 'Victor Brecheret'];
+  grupos: string[] = ['Campesina', 'Filipini', 'Guadalupe', 'Salão do Reino', 'Santina da Costa', 'Umuarama', 'Vila Yara', 'Victor Brecheret'];
   filtroGrupo: string = 'Todos';
   pessoasFiltradas: Pessoa[] = [];
+  pessoaSelecionada: Pessoa;
 
   constructor(private pessoaService: PessoaService, private router: Router) { }
 
@@ -52,6 +53,15 @@ export class ListaPessoasComponent implements OnInit {
       );
     }
   }
+
+  abrirModal(pessoa: Pessoa) {
+    this.pessoaSelecionada = pessoa;
+  }
+
+  fecharModal() {
+    this.pessoaSelecionada = null;
+  }
+
   
 
   /*filtrar(): void {

@@ -10,7 +10,7 @@
             <option *ngFor="let grupo of grupos" [value]="grupo">{{grupo}}</option>
           </select>
           <br>
-        </div>    
+        </div>
         <table class="table table-striped table-hover table-bordered">
           <thead>
             <tr class="table-primary">
@@ -22,7 +22,7 @@
           </thead>
           <tbody table-group-divider>
             <!-- Use um ngFor para iterar sobre a lista de pessoas -->
-            <tr *ngFor="let pessoa of pessoasFiltradas">
+            <tr *ngFor="let pessoa of pessoasFiltradas" (click)="abrirModal(pessoa)">
               <td>{{pessoa.nome}}</td>
               <td>{{pessoa.grupo}}</td>
               <td>{{pessoa.tipoPublicador}}</td>
