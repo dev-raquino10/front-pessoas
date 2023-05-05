@@ -1,0 +1,50 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.form-floating {
+  margin-bottom: 15px;
+}
+
+.form-floating label {
+  color: #212529;
+}
+
+.form-floating .form-control {
+  height: 50px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+.form-floating textarea.form-control:not([rows]) {
+  height: auto;
+}
+
+.form-check-label {
+  margin-right: 15px;
+}
+
+.invalid-feedback {
+  display: none;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #dc3545;
+}
+
+input.ng-invalid:not(:focus),
+textarea.ng-invalid:not(:focus) {
+  border-color: #dc3545;
+  box-shadow: none;
+}
+
+input.ng-valid:not(:focus),
+textarea.ng-valid:not(:focus) {
+  border-color: #28a745;
+  box-shadow: none;
+}

@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="row justify-content-center mt-5">
+    <div class="col-lg-10 col-md-8 col-sm-10">
+      <div class="card p-4 shadow-lg">
+        <h2 class="mb-4 text-center">Listagem de Pessoas</h2>
+        <div class="form-group col-md-2">
+          <label for="filtroGrupo">Filtrar por grupo:</label>
+          <select class="form-select" [(ngModel)]="filtroGrupo" (change)="filtrar()">
+            <option selected>Todos</option>
+            <option *ngFor="let grupo of grupos" [value]="grupo">{{grupo}}</option>
+          </select>
+          <br>
+        </div>    
+        <table class="table table-striped table-hover table-bordered">
+          <thead>
+            <tr class="table-primary">
+              <th>Nome</th>
+              <th>Grupo</th>
+              <th>Privilégio</th>
+              <th>Privilégio adicional</th>
+            </tr>
+          </thead>
+          <tbody table-group-divider>
+            <!-- Use um ngFor para iterar sobre a lista de pessoas -->
+            <tr *ngFor="let pessoa of pessoasFiltradas">
+              <td>{{pessoa.nome}}</td>
+              <td>{{pessoa.grupo}}</td>
+              <td>{{pessoa.tipoPublicador}}</td>
+              <td>{{pessoa.privilegio}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,10 +7,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ListaPessoasComponent } from './lista-pessoas/lista-pessoas.component';
+import { ListaPessoasComponent } from './pessoas/lista-pessoas/lista-pessoas.component';
 import { PessoaService } from './pessoa.service';
-import { CadastroPessoaComponent } from './cadastro-pessoa/cadastro-pessoa.component';
+import { CadastroPessoaComponent } from './pessoas/cadastro-pessoa/cadastro-pessoa.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { AppHomeComponent } from './app-home/app-home.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     NavbarComponent,
     ListaPessoasComponent,
     CadastroPessoaComponent,
-    SidebarComponent
+    SidebarComponent,
+    AppHomeComponent
   ],
   imports: [
     BrowserModule,

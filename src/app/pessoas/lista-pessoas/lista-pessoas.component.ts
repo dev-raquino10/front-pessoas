@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PessoaService } from '../pessoa.service';
-import { Pessoa } from '../pessoa'
+import { PessoaService } from '../../pessoa.service';
+import { Pessoa } from '../../pessoa'
 
 import { Router } from '@angular/router';
 
@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
 export class ListaPessoasComponent implements OnInit {
 
   pessoas: Pessoa[] = [];
+  grupos: string[] = ['Campesina', 'Filipini', 'Guadalupe', 'Salão do reino', 'Santina da Costa', 'Umuarama', 'Vila Yara', 'Victor Brecheret'];
+  filtroGrupo: string = 'Todos';
+  pessoasFiltradas: Pessoa[] = [];
 
   constructor(private pessoaService: PessoaService, private router: Router) { }
 
@@ -32,11 +35,34 @@ export class ListaPessoasComponent implements OnInit {
           telefone: pessoa.telefone,
           endereco: pessoa.endereco
         }));
+        this.filtrar();
       },
       error => {
         console.log(error);
       }
     );
   }
+
+  filtrar(): void {
+    if (this.filtroGrupo === 'Todos') {
+      this.pessoasFiltradas = this.pessoas;
+    } else {
+      this.pessoasFiltradas = this.pessoas.filter(
+        (pessoa) => pessoa.grupo === this.filtroGrupo
+      );
+    }
+  }
+  
+
+  /*filtrar(): void {
+    if (this.filtroGrupo) { // Verifica se o filtro não está vazio
+      this.pessoasFiltradas = this.pessoas.filter(
+        (pessoa) => pessoa.grupo === this.filtroGrupo
+      );
+    } else {
+      this.pessoasFiltradas = this.pessoas; // Exibe a lista completa
+    }
+  }*/
+  
 
 }
