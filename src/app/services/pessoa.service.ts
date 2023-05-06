@@ -16,8 +16,7 @@ export class PessoaService {
   }
 
   getPessoa(id: number): Observable<Pessoa> {
-    const urlPessoa = `${this.baseUrl}/${id}`;
-    return this.http.get<Pessoa>(urlPessoa);
+    return this.http.get<Pessoa>(`${this.baseUrl}/${id}`);
   }
 
   cadastrarPessoa(pessoa: Pessoa): Observable<Pessoa> {

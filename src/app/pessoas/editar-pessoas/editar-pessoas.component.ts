@@ -12,8 +12,10 @@ import { PessoaService } from '../../services/pessoa.service';
 })
 export class EditarPessoasComponent implements OnInit {
   pessoaForm: FormGroup;
-  pessoa: Pessoa;
+  pessoa: Pessoa = {};
   id: number;
+  activatedRoute: any;
+  titulo: any;
 
   constructor(
     private fb: FormBuilder,
@@ -22,35 +24,20 @@ export class EditarPessoasComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
-    this.id = +this.route.snapshot.paramMap.get('id');
-    this.pessoaService.getPessoa(this.id).subscribe(
-      (pessoa: Pessoa) => {
-        this.pessoa = pessoa;
-        this.pessoaForm.patchValue({
-          nome: pessoa.nome,
-          nomeCompleto: pessoa.nomeCompleto,
-          nomeFamilia: pessoa.nomeFamilia,
-          grupo: pessoa.grupo,
-          tipoPublicador: pessoa.tipoPublicador,
-          privilegio: pessoa.privilegio,
-          dtNacimento: pessoa.dtNascimento,
-          dtBatismo: pessoa.dtBatismo,
-          sexo: pessoa.sexo,
-          telefone: pessoa.telefone,
-          endereco: pessoa.endereco
-        });
-      },
-      error => {
-        console.log(error);
-      }
-    );
-    this.pessoaForm = this.fb.group({
-      nome: ['', Validators.required],
-      cpf: ['', Validators.required],
-      dataNascimento: ['', Validators.required]
+  ngOnInit(): void {
+    this.activatedRoute.data.subscribe(data => {
+      this.titulo = data.titulo;
+    });
+  
+    this.activatedRoute.params.subscribe(params => {
+      const id = params['id'];
+      this.pessoaService.getPessoa(id).subscribe(
+        pessoa => this.pessoa = pessoa,
+        error => console.log(error)
+      );
     });
   }
+  
 
   salvar() {
     if (this.pessoaForm.valid) {
