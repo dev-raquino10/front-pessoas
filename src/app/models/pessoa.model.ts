@@ -1,4 +1,5 @@
 export class Pessoa {
+    [x: string]: any;
     id?: number;
     nome?: string = '';
     nomeCompleto?: string = '';

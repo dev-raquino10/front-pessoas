@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Pessoa } from '../../pessoa'
+import { Pessoa } from '../../models/pessoa.model'
 
 @Component({
   selector: 'app-modal-pessoas',

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Pessoa } from '../pessoa'
-import { PessoaService } from '../pessoa.service';
+import { Pessoa } from '../models/pessoa.model'
+import { PessoaService } from '../services/pessoa.service';
 
 @Injectable({
   providedIn: 'root',
