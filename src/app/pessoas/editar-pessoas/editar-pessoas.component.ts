@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 import { Pessoa } from '../../models/pessoa.model';
 import { PessoaService } from '../../services/pessoa.service';
@@ -14,8 +15,7 @@ export class EditarPessoasComponent implements OnInit {
   pessoaForm: FormGroup;
   pessoa: Pessoa = {};
   id: number;
-  activatedRoute: any;
-  titulo: any;
+  titulo: string;
 
   constructor(
     private fb: FormBuilder,
@@ -25,19 +25,41 @@ export class EditarPessoasComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(data => {
-      this.titulo = data.titulo;
+    this.route.data.subscribe(data => {
+      this.titulo = data['titulo'];
     });
   
-    this.activatedRoute.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       const id = params['id'];
       this.pessoaService.getPessoa(id).subscribe(
-        pessoa => this.pessoa = pessoa,
+        pessoa => {
+          this.pessoa = pessoa;
+          this.preencherFormulario();
+        },
         error => console.log(error)
       );
     });
-  }
   
+    this.pessoaForm = this.fb.group({
+      // defina aqui os campos do formulário, com os respectivos valores iniciais e validadores
+    });
+  }
+
+  preencherFormulario() {
+    this.pessoaForm.patchValue({
+      nome: this.pessoa.nome,
+      nomeCompleto: this.pessoa.nomeCompleto,
+      nomeFamilia: this.pessoa.nomeFamilia,
+      grupo: this.pessoa.grupo,
+      tipoPublicador: this.pessoa.tipoPublicador,
+      privilegio: this.pessoa.privilegio,
+      dtNascimento: this.pessoa.dtNascimento,
+      dtBatismo: this.pessoa.dtBatismo,
+      sexo: this.pessoa.sexo,
+      telefone: this.pessoa.telefone,
+      endereco: this.pessoa.endereco,
+    });
+  }
 
   salvar() {
     if (this.pessoaForm.valid) {
@@ -60,6 +82,7 @@ export class EditarPessoasComponent implements OnInit {
           this.router.navigate(['/pessoas']);
         },
         error => {
+
           console.log(error);
         }
       );
