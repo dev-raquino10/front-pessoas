@@ -65,13 +65,9 @@ export class ListaPessoasComponent implements OnInit {
     document.body.classList.remove('modal-open');
   }
 
-  editarPessoa(id: number) {
-    this.pessoaService.getPessoa(id).subscribe(
-      pessoa => {
-        this.router.navigate(['/cadastro-pessoa'], { queryParams: { id: pessoa.id, editar: true } });
-      },
-      error => console.log(error)
-    );
+  editarPessoa() {
+    this.fecharModal();
+    this.router.navigate(['/cadastrar'], { state: { pessoa: this.pessoaSelecionada } });
   }
 
 }

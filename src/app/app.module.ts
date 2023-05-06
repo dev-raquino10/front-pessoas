@@ -13,6 +13,7 @@ import { CadastroPessoaComponent } from './pessoas/cadastro-pessoa/cadastro-pess
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AppHomeComponent } from './app-home/app-home.component';
 import { ModalPessoasComponent } from './pessoas/modal-pessoas/modal-pessoas.component';
+import { EditarPessoasComponent } from './pessoas/editar-pessoas/editar-pessoas.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ModalPessoasComponent } from './pessoas/modal-pessoas/modal-pessoas.com
     CadastroPessoaComponent,
     SidebarComponent,
     AppHomeComponent,
-    ModalPessoasComponent
+    ModalPessoasComponent,
+    EditarPessoasComponent
   ],
   imports: [
     BrowserModule,
