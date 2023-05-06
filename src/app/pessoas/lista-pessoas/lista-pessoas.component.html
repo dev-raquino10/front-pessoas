@@ -2,7 +2,7 @@
   <div class="row justify-content-center mt-5">
     <div class="col-lg-10 col-md-8 col-sm-10">
       <div class="card p-4 shadow-lg">
-        <h2 class="mb-4 text-center">Listagem de Pessoas</h2>
+        <h2 class="mb-4 text-center">Pessoas da congregação</h2>
         <div class="form-group col-md-2">
           <label for="filtroGrupo">Filtrar por grupo:</label>
           <select class="form-select" [(ngModel)]="filtroGrupo" (change)="filtrar()">
@@ -13,7 +13,7 @@
         </div>
         <table class="table table-striped table-hover table-bordered">
           <thead>
-            <tr class="table-primary">
+            <tr class="table" style="background-color: rgb(87, 19, 143); color: white;">
               <th>Nome</th>
               <th>Grupo</th>
               <th>Privilégio</th>
@@ -34,3 +34,48 @@
     </div>
   </div>
 </div>
+<div class="modal" *ngIf="pessoaSelecionada" [ngClass]="{'active': pessoaSelecionada}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{pessoaSelecionada.nome}}</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="fecharModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p>Nome Completo: {{pessoaSelecionada.nomeCompleto}}</p>
+        <p>Nome da Família: {{pessoaSelecionada.nomeFamilia}}</p>
+        <p>Tipo de publicador: {{pessoaSelecionada.tipoPublicador}}</p>
+        <p>Grupo: {{pessoaSelecionada.grupo}}</p>
+        <p>Privilégio especial: {{pessoaSelecionada.privilegio}}</p>
+        <p>Data de nascimento: {{pessoaSelecionada.dtNascimento}}</p>
+        <p>Data de batismo: {{pessoaSelecionada.dtBatismo}}</p>
+        <p>Gênero: {{pessoaSelecionada.sexo}}</p>
+        <p>Telefone: {{pessoaSelecionada.telefone}}</p>
+        <p>Endereço: {{pessoaSelecionada.endereco}}</p>
+        
+        <!-- Adicione aqui mais informações que deseja exibir -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="fecharModal()">Fechar</button>
+        <a [routerLink]="['/editar', pessoaSelecionada.id]" class="btn btn-primary">Editar</a>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+<script>
+  // Seleciona todas as linhas da tabela
+  var rows = document.querySelectorAll("table tbody tr");
+
+  // Para cada linha da tabela
+  rows.forEach(function(row) {
+    // Adiciona um evento de clique
+    row.addEventListener("click", function() {
+      // Seleciona o modal
+      var modal = document.querySelector(".modal");
+      // Adiciona a classe "active" ao modal
+      modal.classList.add("active");
+    });
+  });
+</script>

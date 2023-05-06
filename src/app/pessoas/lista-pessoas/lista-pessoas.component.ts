@@ -17,6 +17,7 @@ export class ListaPessoasComponent implements OnInit {
   pessoasFiltradas: Pessoa[] = [];
   pessoaSelecionada: Pessoa;
 
+
   constructor(private pessoaService: PessoaService, private router: Router) { }
 
   ngOnInit(): void {
@@ -56,23 +57,21 @@ export class ListaPessoasComponent implements OnInit {
 
   abrirModal(pessoa: Pessoa) {
     this.pessoaSelecionada = pessoa;
+    document.body.classList.add('modal-open');
   }
 
   fecharModal() {
     this.pessoaSelecionada = null;
+    document.body.classList.remove('modal-open');
   }
 
-  
-
-  /*filtrar(): void {
-    if (this.filtroGrupo) { // Verifica se o filtro não está vazio
-      this.pessoasFiltradas = this.pessoas.filter(
-        (pessoa) => pessoa.grupo === this.filtroGrupo
-      );
-    } else {
-      this.pessoasFiltradas = this.pessoas; // Exibe a lista completa
-    }
-  }*/
-  
+  editarPessoa(id: number) {
+    this.pessoaService.getPessoa(id).subscribe(
+      pessoa => {
+        this.router.navigate(['/cadastro-pessoa'], { queryParams: { id: pessoa.id, editar: true } });
+      },
+      error => console.log(error)
+    );
+  }
 
 }
