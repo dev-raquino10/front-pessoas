@@ -14,6 +14,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { AppHomeComponent } from './app-home/app-home.component';
 import { ModalPessoasComponent } from './pessoas/modal-pessoas/modal-pessoas.component';
 import { EditarPessoasComponent } from './pessoas/editar-pessoas/editar-pessoas.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { EditarPessoasComponent } from './pessoas/editar-pessoas/editar-pessoas.
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [PessoaService],
   bootstrap: [AppComponent]
