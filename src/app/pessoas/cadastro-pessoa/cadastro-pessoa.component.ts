@@ -1,86 +1,63 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
-import { PessoaService } from '../../services/pessoa.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Pessoa } from 'src/app/models/pessoa.model';
+import { PessoaService } from 'src/app/services/pessoa.service';
 
 @Component({
   selector: 'app-cadastro-pessoa',
   templateUrl: './cadastro-pessoa.component.html',
   styleUrls: ['./cadastro-pessoa.component.css']
 })
-export class CadastroPessoaComponent {
-  nome: string;
-  nomeCompleto: string;
-  nomeFamilia: string;
-  grupo: string;
-  tipoPublicador: string;
-  privilegio: string;
-  dataNascimento: Date;
-  dataBatismo: Date;
-  sexo: string;
-  telefone: string;
-  endereco: string;
-  tituloPagina: string;
-  botaoAcao: string;
-  pessoa: any;
-  pessoaForm: FormGroup;
+export class CadastroPessoaComponent implements OnInit {
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private fb: FormBuilder, private pessoaService: PessoaService) {
-    this.pessoaForm = this.fb.group({
-      nome: [''],
-      nomeCompleto: [''],
-      nomeFamilia: [''],
-      grupo: [''],
-      privilegio: [''],
-      tipoPublicador: [''],
-      dtNascimento: [''],
-      dtBatismo: [''],
-      sexo: [''],
-      telefone: [''],
-      endereco: ['']
+  pessoaForm: FormGroup;
+  submitted = false;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private pessoaService: PessoaService,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    this.pessoaForm = this.formBuilder.group({
+      nome: ['', Validators.required],
+      nomeCompleto: ['', Validators.required],
+      nomeFamilia: ['', Validators.required],
+      grupo: ['', Validators.required],
+      privilegio: ['', Validators.required],
+      tipoPublicador: ['', Validators.required],
+      dtNascimento: ['', Validators.required],
+      dtBatismo: ['', Validators.required],
+      sexo: ['', Validators.required],
+      telefone: ['', Validators.required],
+      endereco: ['', Validators.required]
     });
   }
 
-  submitForm() {
-    const novaPessoa = {
-      nome: this.pessoaForm.value.nome,
-      nomeCompleto: this.pessoaForm.value.nomeCompleto,
-      nomeFamilia: this.pessoaForm.value.nomeFamilia,
-      grupo: this.pessoaForm.value.grupo,
-      privilegio: this.pessoaForm.value.privilegio,
-      tipoPublicador: this.pessoaForm.value.tipoPublicador,
-      dtNascimento: this.pessoaForm.value.dtNascimento,
-      dtBatismo: this.pessoaForm.value.dtBatismo,
-      sexo: this.pessoaForm.value.sexo,
-      telefone: this.pessoaForm.value.telefone,
-      endereco: this.pessoaForm.value.endereco
-    };
+  get f() { return this.pessoaForm.controls; }
 
-    this.pessoaService.cadastrarPessoa(novaPessoa).subscribe(
-      pessoa => console.log('Pessoa cadastrada com sucesso!'),
-      error => console.log('Erro ao cadastrar pessoa: ', error)
-    );
-  }
+  onSubmit() {
+    this.submitted = true;
 
-  ngOnInit() {
-    const id = +this.route.snapshot.queryParamMap.get('id');
-    const editar = this.route.snapshot.queryParamMap.get('editar');
-    if (id) {
-      if (editar) {
-        this.tituloPagina = 'Editar Pessoa';
-        this.botaoAcao = 'Salvar Alterações';
-        this.pessoaService.getPessoa(id).subscribe(
-          pessoa => this.pessoa = pessoa,
-          error => console.log(error)
-        );
-      } else {
-        this.pessoaService.getPessoa(id).subscribe(
-          pessoa => this.pessoaForm.patchValue(pessoa),
-          error => console.log(error)
-        );
-      }
+    if (this.pessoaForm.invalid) {
+      return;
     }
+
+    const pessoa: Pessoa = this.pessoaForm.value;
+
+    this.pessoaService.salvarPessoa(pessoa).subscribe(
+      data => {
+        console.log(data);
+        alert('Pessoa cadastrada com sucesso!');
+        this.router.navigate(['/listar-pessoas']);
+      },
+      error => {
+        console.log(error);
+        alert('Erro ao cadastrar pessoa!');
+      }
+    );
   }
 
 }

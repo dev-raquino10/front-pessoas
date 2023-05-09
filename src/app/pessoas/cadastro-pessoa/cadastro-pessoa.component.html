@@ -1,121 +1,94 @@
-<div class="container-fluid">
-  <div class="row justify-content-center mt-5">
-    <div class="col-lg-10 col-md-8 col-sm-10">
-      <div class="card p-4 shadow-lg">
-        <h2 class="mb-4 text-center">Cadastro de Pessoa</h2>
-        <form class="row g-3 needs-validation" (ngSubmit)="submitForm()">
-          <div class="col-md-3">
-            <label for="validationCustom01" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="nome" required>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
-          </div>
-          <div class="col-md-4">
-            <label for="validationCustom02" class="form-label">Nome completo</label>
-            <input type="text" class="form-control" id="nomeCompleto" required>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
-          </div>
-          <div class="col-md-4">
-            <label for="validationCustom02" class="form-label">Nome família</label>
-            <input type="text" class="form-control" id="nomeFamilia" required>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
-          </div>
-          <div class="col-md-2">
-            <label for="validationCustom04" class="form-label">Grupo</label>
-            <select class="form-select" id="grupo" required>
-              <option selected disabled value="">Escolha...</option>
-              <option>Vila Yara</option>
-              <option>Brecheret</option>
-              <option>Campesina</option>
-              <option>Santina da Costa</option>
-              <option>Salão do reino</option>
-              <option>Filipini</option>
-              <option>Guadalupe</option>
-            </select>
-            <div class="invalid-feedback">
-              Please select a valid state.
-            </div>
-          </div>
-          <div class="col-md-2">
-            <label for="validationCustom03" class="form-label">Tipo de publicador</label>
-            <select class="form-select" id="tipoPublicador" required>
-              <option selected disabled value="">Escolha...</option>
-              <option>Publicador</option>
-              <option>Pioneiro auxiliar</option>
-              <option>Pioneiro regular</option>
-            </select>
-            <div class="invalid-feedback">
-              Please select a valid state.
-            </div>
-          </div>
-          <div class="col-md-2">
-            <label for="validationCustom03" class="form-label">Gênero</label>
-            <select class="form-select" id="sexo" required>
-              <option selected disabled value="">Escolha...</option>
-              <option>Feminino</option>
-              <option>Masculino</option>
-            </select>
-            <div class="invalid-feedback">
-              Please select a valid state.
-            </div>
-          </div>
-          <div class="col-md-2">
-            <label for="validationCustom03" class="form-label">Privilégio</label>
-            <select class="form-select" id="privilegio" required>
-              <option selected disabled value="">Escolha...</option>
-              <option>Ancião</option>
-              <option>Servo ministerial</option>
-            </select>
-            <div class="invalid-feedback">
-              Please select a valid state.
-            </div>
-          </div>
-
-          <div class="col-md-2">
-            <label for="validationCustom05" class="form-label">Data de nascimento</label>
-            <input type="date" class="form-control" id="dtNascimento" name="dtNascimento" required>
-            <div class="invalid-feedback">
-              Please provide a valid zip.
-            </div>
-          </div>
-
-          <div class="col-md-2">
-            <label for="validationCustom05" class="form-label">Data de batismo</label>
-            <input type="date" class="form-control" id="dtBatismo" name="dtBatismo" required>
-            <div class="invalid-feedback">
-              Please provide a valid zip.
-            </div>
-          </div>
-
-          <div class="col-md-2">
-            <label for="validationCustom02" class="form-label">Telefone</label>
-            <input type="text" class="form-control" id="telefone" required>
-            <div class="valid-feedback">
-              Looks good!
+<div class="container mt-3">
+  <div class="card">
+    <div class="card-header">
+      <h4>Cadastro de Pessoa</h4>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="pessoaForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Nome</label>
+              <input type="text" class="form-control" formControlName="nome">       
             </div>
           </div>
           <div class="col-md-6">
-            <label for="validationCustom02" class="form-label">Endereço</label>
-            <input type="text" class="form-control" id="endereco" required>
-            <div class="valid-feedback">
-              Looks good!
+            <div class="form-group">
+              <label>Nome Completo</label>
+              <input type="text" class="form-control" formControlName="nomeCompleto">
             </div>
           </div>
-
-          <div class="col-12">
-            <button class="btn btn-primary" type="submit">Salvar</button>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Nome de Família</label>
+                <input type="text" class="form-control" formControlName="nomeFamilia">
+            </div>
           </div>
-        </form>
-      </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Grupo</label>
+              <input type="text" class="form-control" formControlName="grupo" placeholder="Grupo">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Gênero</label>
+              <input type="text" class="form-control" formControlName="sexo" placeholder="Gênero">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Privilegio</label>
+              <input type="text" class="form-control" formControlName="privilegio" placeholder="Privilegio">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Tipo de Publicador</label>
+              <input type="text" class="form-control" formControlName="tipoPublicador" placeholder="Tipo de Publicador">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Data de Nascimento</label>
+              <input type="date" class="form-control" formControlName="dtNascimento" placeholder="Data de Nascimento">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Data de Batismo</label>
+              <input type="date" class="form-control" formControlName="dtBatismo" placeholder="Data de Batismo">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Telefone</label>
+              <input type="tel" class="form-control" formControlName="telefone" placeholder="Telefone">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Endereço</label>
+              <textarea class="form-control" formControlName="endereco" placeholder="Endereço"></textarea>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!pessoaForm.valid">Salvar</button>
+      </form>
+     
     </div>
   </div>
 </div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/js/bootstrap.min.js"></script>
