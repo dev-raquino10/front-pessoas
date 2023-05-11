@@ -73,7 +73,6 @@ export class ListaPessoasComponent implements OnInit {
   editarPessoa(pessoaSelecionada: Pessoa) {
     this.editarPessoaSelecionada = this.pessoaSelecionada;
     document.body.classList.add('modal-open');
-
   }
 
   onSubmit() {

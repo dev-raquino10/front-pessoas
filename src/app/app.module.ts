@@ -12,8 +12,6 @@ import { PessoaService } from './services/pessoa.service';
 import { CadastroPessoaComponent } from './pessoas/cadastro-pessoa/cadastro-pessoa.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AppHomeComponent } from './app-home/app-home.component';
-import { ModalPessoasComponent } from './pessoas/modal-pessoas/modal-pessoas.component';
-import { EditarPessoasComponent } from './pessoas/editar-pessoas/editar-pessoas.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -24,9 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ListaPessoasComponent,
     CadastroPessoaComponent,
     SidebarComponent,
-    AppHomeComponent,
-    ModalPessoasComponent,
-    EditarPessoasComponent
+    AppHomeComponent
   ],
   imports: [
     BrowserModule,

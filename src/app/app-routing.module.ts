@@ -5,7 +5,6 @@ import { AppHomeComponent } from './app-home/app-home.component';
 import { ListaPessoasComponent } from './pessoas/lista-pessoas/lista-pessoas.component';
 import { CadastroPessoaComponent } from './pessoas/cadastro-pessoa/cadastro-pessoa.component';
 import { PessoaResolver } from './resolvers/pessoa.resolver';
-import { EditarPessoasComponent } from './pessoas/editar-pessoas/editar-pessoas.component'; // importe o componente de edição
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -19,7 +18,7 @@ const routes: Routes = [
     resolve: { pessoas: PessoaResolver }
   },
   {
-    path: 'editar/:id', component: EditarPessoasComponent,
+    path: 'editar/:id', component: ListaPessoasComponent,
     data: { titulo: 'Editar Pessoa' },
     resolve: { pessoa: PessoaResolver }
   }
