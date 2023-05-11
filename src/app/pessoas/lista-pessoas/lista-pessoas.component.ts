@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PessoaService } from '../../services/pessoa.service';
 import { Pessoa } from '../../models/pessoa.model'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-lista-pessoas',
@@ -16,9 +18,12 @@ export class ListaPessoasComponent implements OnInit {
   filtroGrupo: string = 'Todos';
   pessoasFiltradas: Pessoa[] = [];
   pessoaSelecionada: Pessoa;
+  editarPessoaSelecionada: Pessoa;
+  pessoaForm: FormGroup;
+  submitted = false;
 
 
-  constructor(private pessoaService: PessoaService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private pessoaService: PessoaService, private router: Router) { }
 
   ngOnInit(): void {
     this.pessoaService.listarPessoas().subscribe(
@@ -65,9 +70,46 @@ export class ListaPessoasComponent implements OnInit {
     document.body.classList.remove('modal-open');
   }
 
-  editarPessoa() {
-    this.fecharModal();
-    this.router.navigate(['/cadastrar'], { state: { pessoa: this.pessoaSelecionada } });
+  editarPessoa(pessoaSelecionada: Pessoa) {
+    this.editarPessoaSelecionada = this.pessoaSelecionada;
+    document.body.classList.add('modal-open');
+
+  }
+
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.pessoaForm.invalid) {
+      return;
+    }
+
+    const pessoa: Pessoa = this.pessoaForm.value;
+
+    this.pessoaService.salvarPessoa(pessoa).subscribe(
+      data => {
+        console.log(data);
+        alert('Pessoa atualizada com sucesso!');
+        this.router.navigate(['/listar-pessoas']);
+        this.ngOnInit();
+      },
+      error => {
+        console.log(error);
+        alert('Erro ao editardados da pessoa!');
+      }
+    );
+  }
+
+  delete(pessoa: Pessoa): void {
+    if (confirm('Deseja realmente excluir esta pessoa?')) {
+      this.pessoaService.deletarPessoa(pessoa.id)
+        .pipe(
+          switchMap(() => this.pessoaService.listarPessoas())
+        )
+        .subscribe(pessoas => {
+          this.fecharModal();
+          this.ngOnInit();
+        });
+    }
   }
 
 }

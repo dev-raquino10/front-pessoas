@@ -52,6 +52,7 @@ export class CadastroPessoaComponent implements OnInit {
         console.log(data);
         alert('Pessoa cadastrada com sucesso!');
         this.router.navigate(['/listar-pessoas']);
+        this.ngOnInit();
       },
       error => {
         console.log(error);
