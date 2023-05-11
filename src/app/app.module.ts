@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ListaPessoasComponent } from './pessoas/lista-pessoas/lista-pessoas.component';
+import { EditarPessoaComponent } from './pessoas/editar-pessoa/editar-pessoa.component';
 import { PessoaService } from './services/pessoa.service';
 import { CadastroPessoaComponent } from './pessoas/cadastro-pessoa/cadastro-pessoa.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -20,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     NavbarComponent,
     ListaPessoasComponent,
+    EditarPessoaComponent,
     CadastroPessoaComponent,
     SidebarComponent,
     AppHomeComponent

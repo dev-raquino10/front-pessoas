@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PessoaService } from '../../services/pessoa.service';
 import { Pessoa } from '../../models/pessoa.model'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
@@ -12,7 +14,7 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./lista-pessoas.component.scss']
 })
 export class ListaPessoasComponent implements OnInit {
-
+  @ViewChild('modalEditar') modalEditar: ElementRef;
   pessoas: Pessoa[] = [];
   grupos: string[] = ['Campesina', 'Filipini', 'Guadalupe', 'Salão do Reino', 'Santina da Costa', 'Umuarama', 'Vila Yara', 'Victor Brecheret'];
   filtroGrupo: string = 'Todos';
@@ -23,7 +25,7 @@ export class ListaPessoasComponent implements OnInit {
   submitted = false;
 
 
-  constructor(private formBuilder: FormBuilder, private pessoaService: PessoaService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private pessoaService: PessoaService, private router: Router, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.pessoaService.listarPessoas().subscribe(
@@ -70,45 +72,67 @@ export class ListaPessoasComponent implements OnInit {
     document.body.classList.remove('modal-open');
   }
 
-  editarPessoa(pessoaSelecionada: Pessoa) {
-    this.editarPessoaSelecionada = this.pessoaSelecionada;
-    document.body.classList.add('modal-open');
+  /* editarPessoa(pessoa: Pessoa) {
+     this.editarPessoaSelecionada = this.pessoaSelecionada;
+     document.body.classList.add('modal-open');
+   }*/
+
+  editarPessoa(pessoa: Pessoa) {
+    const form = this.formBuilder.group({
+      id: [pessoa.id],
+      nome: [pessoa.nome],
+      nomeCompleto: [pessoa.nomeCompleto],
+      nomeFamilia: [pessoa.nomeFamilia],
+      grupo: [pessoa.grupo],
+      tipoPublicador: [pessoa.tipoPublicador],
+      privilegio: [pessoa.privilegio],
+      sexo: [pessoa.sexo],
+      dtNascimento: [pessoa.dtNascimento],
+      dtBatismo: [pessoa.dtBatismo],
+      telefone: [pessoa.telefone],
+      endereco: [pessoa.endereco]
+    });
+
+    const modalRef = this.modalService.open(this.modalEditar);
+    modalRef.componentInstance.form = form;
+    modalRef.componentInstance.pessoa = pessoa;
   }
 
-  onSubmit() {
-    this.submitted = true;
 
-    if (this.pessoaForm.invalid) {
-      return;
-    }
+onSubmit() {
+  this.submitted = true;
 
-    const pessoa: Pessoa = this.pessoaForm.value;
-
-    this.pessoaService.salvarPessoa(pessoa).subscribe(
-      data => {
-        console.log(data);
-        alert('Pessoa atualizada com sucesso!');
-        this.router.navigate(['/listar-pessoas']);
-        this.ngOnInit();
-      },
-      error => {
-        console.log(error);
-        alert('Erro ao editardados da pessoa!');
-      }
-    );
+  if (this.pessoaForm.invalid) {
+    return;
   }
 
-  delete(pessoa: Pessoa): void {
-    if (confirm('Deseja realmente excluir esta pessoa?')) {
-      this.pessoaService.deletarPessoa(pessoa.id)
-        .pipe(
-          switchMap(() => this.pessoaService.listarPessoas())
-        )
-        .subscribe(pessoas => {
-          this.fecharModal();
-          this.ngOnInit();
-        });
+  const pessoa: Pessoa = this.pessoaForm.value;
+
+  this.pessoaService.salvarPessoa(pessoa).subscribe(
+    data => {
+      console.log(data);
+      alert('Pessoa atualizada com sucesso!');
+      this.router.navigate(['/listar-pessoas']);
+      this.ngOnInit();
+    },
+    error => {
+      console.log(error);
+      alert('Erro ao editardados da pessoa!');
     }
+  );
+}
+
+delete (pessoa: Pessoa): void {
+  if(confirm('Deseja realmente excluir esta pessoa?')) {
+  this.pessoaService.deletarPessoa(pessoa.id)
+    .pipe(
+      switchMap(() => this.pessoaService.listarPessoas())
+    )
+    .subscribe(pessoas => {
+      this.fecharModal();
+      this.ngOnInit();
+    });
+}
   }
 
 }

@@ -1,0 +1,18 @@
+<ng-template #modalEditar let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Editar Pessoa</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-editar-pessoa [pessoa]="form.value" (pessoaAtualizada)="atualizarPessoa()"></app-editar-pessoa>
+      <!--<app-editar-pessoa [pessoa]="form.value" (atualizarPessoa)="atualizarPessoa($event)"></app-editar-pessoa>-->
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss(); isModalOpen = false;">Cancelar</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close(); isModalOpen = false;">Salvar</button>
+    </div>
+  </ng-template>
+  
