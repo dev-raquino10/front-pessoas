@@ -24,13 +24,9 @@ export class EditarPessoasComponent implements OnInit {
     private pessoaService: PessoaService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe(data => {
-      this.titulo = data['titulo'];
-    });
-  
     this.route.params.subscribe(params => {
       const id = params['id'];
       this.pessoaService.getPessoa(id).subscribe(
@@ -41,7 +37,7 @@ export class EditarPessoasComponent implements OnInit {
         error => console.log(error)
       );
     });
-  
+
     this.pessoaForm = this.fb.group({
       // defina aqui os campos do formulário, com os respectivos valores iniciais e validadores
     });
