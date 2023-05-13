@@ -1,93 +1,93 @@
 <div class="container mt-3">
-    <div class="card">
-      <div class="card p-4 shadow-lg">
-        <h2 class="mb-4 text-center">Cadastro de Pessoa</h2>
-        <div class="card-body">
-          <form [formGroup]="pessoaForm" (ngSubmit)="ngOnInit()">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Nome</label>
-                  <input type="text" class="form-control" formControlName="nome">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Nome Completo</label>
-                  <input type="text" class="form-control" formControlName="nomeCompleto">
-                </div>
+  <div class="card">
+    <div class="card p-4 shadow-lg">
+      <h2 class="mb-4 text-center">Editar dados - {{editarPessoaSelecionada.nome}}</h2>
+      <div class="card-body">
+        <form [formGroup]="pessoaForm" (ngSubmit)="onSubmit()" >
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Nome</label>
+                <input type="text" class="form-control" formControlName="nome" [value]="editarPessoaSelecionada.nome">
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>Nome de Família</label>
-                  <input type="text" class="form-control" formControlName="nomeFamilia">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>Grupo</label>
-                  <input type="text" class="form-control" formControlName="grupo">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>Gênero</label>
-                  <input type="text" class="form-control" formControlName="sexo">
-                </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Nome Completo</label>
+                <input type="text" class="form-control" formControlName="nomeCompleto" [value]="editarPessoaSelecionada.nomeCompleto">
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Privilégio</label>
-                  <input type="text" class="form-control" formControlName="privilegio">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Tipo de Publicador</label>
-                  <input type="text" class="form-control" formControlName="tipoPublicador">
-                </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Nome de Família</label>
+                <input type="text" class="form-control" formControlName="nomeFamilia" [value]="editarPessoaSelecionada.nomeFamilia">
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Data de Nascimento</label>
-                  <input type="date" class="form-control" formControlName="dtNascimento">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Data de Batismo</label>
-                  <input type="date" class="form-control" formControlName="dtBatismo">
-                </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Grupo</label>
+                <input type="text" class="form-control" formControlName="grupo" [value]="editarPessoaSelecionada.grupo">
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label>Telefone</label>
-                  <input type="tel" class="form-control" formControlName="telefone">
-                </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Gênero</label>
+                <input type="text" class="form-control" formControlName="sexo" [value]="editarPessoaSelecionada.sexo">
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label>Endereço</label>
-                  <textarea class="form-control" formControlName="endereco"></textarea>
-                </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Privilégio</label>
+                <input type="text" class="form-control" formControlName="privilegio" [value]="editarPessoaSelecionada.privilegio">
               </div>
             </div>
-            <button type="submit" class="btn btn-primary" [disabled]="!pessoaForm.valid">Salvar</button>
-          </form>
-        </div>
-        </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Tipo de Publicador</label>
+                <input type="text" class="form-control" formControlName="tipoPublicador" [value]="editarPessoaSelecionada.tipoPublicador">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Data de Nascimento</label>
+                <input type="text" class="form-control" formControlName="dtNascimento" [value]="editarPessoaSelecionada.dtNascimento">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Data de Batismo</label>
+                <input type="text" class="form-control" formControlName="dtBatismo" [value]="editarPessoaSelecionada.dtBatismo">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Telefone</label>
+                <input type="text" class="form-control" formControlName="telefone" [value]="editarPessoaSelecionada.telefone">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Endereço</label>
+                <textarea class="form-control" formControlName="endereco" [value]="editarPessoaSelecionada.endereco"></textarea>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="!pessoaForm.valid">Salvar</button>
+        </form>
       </div>
     </div>
+  </div>
+</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/js/bootstrap.min.js"></script>

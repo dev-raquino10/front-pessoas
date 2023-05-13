@@ -16,6 +16,8 @@ export class EditarPessoasComponent implements OnInit {
   pessoa: Pessoa = {};
   id: number;
   titulo: string;
+  editarPessoaSelecionada: Pessoa;
+  submitted = false;
 
   constructor(
     private fb: FormBuilder,
@@ -59,6 +61,29 @@ export class EditarPessoasComponent implements OnInit {
       telefone: this.pessoa.telefone,
       endereco: this.pessoa.endereco,
     });
+  }
+
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.pessoaForm.invalid) {
+      return;
+    }
+
+    const pessoa: Pessoa = this.pessoaForm.value;
+
+    this.pessoaService.salvarPessoa(pessoa).subscribe(
+      data => {
+        console.log(data);
+        alert('Pessoa atualizada com sucesso!');
+        this.router.navigate(['/listar-pessoas']);
+        this.ngOnInit();
+      },
+      error => {
+        console.log(error);
+        alert('Erro ao editardados da pessoa!');
+      }
+    );
   }
 
   salvar() {

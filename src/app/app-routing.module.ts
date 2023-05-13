@@ -19,7 +19,7 @@ const routes: Routes = [
     resolve: { pessoas: PessoaResolver }
   },
   {
-    path: 'editar/:id', component: EditarPessoasComponent,
+    path: 'editar', component: EditarPessoasComponent,
     data: { titulo: 'Editar Pessoa' },
     resolve: { pessoa: PessoaResolver }
   }

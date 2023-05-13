@@ -72,31 +72,9 @@ export class ListaPessoasComponent implements OnInit {
 
   editarPessoa(pessoaSelecionada: Pessoa) {
     this.editarPessoaSelecionada = this.pessoaSelecionada;
-    document.body.classList.add('modal-open');
+    this.router.navigate(['editar']);
+    this.ngOnInit();
 
-  }
-
-  onSubmit() {
-    this.submitted = true;
-
-    if (this.pessoaForm.invalid) {
-      return;
-    }
-
-    const pessoa: Pessoa = this.pessoaForm.value;
-
-    this.pessoaService.salvarPessoa(pessoa).subscribe(
-      data => {
-        console.log(data);
-        alert('Pessoa atualizada com sucesso!');
-        this.router.navigate(['/listar-pessoas']);
-        this.ngOnInit();
-      },
-      error => {
-        console.log(error);
-        alert('Erro ao editardados da pessoa!');
-      }
-    );
   }
 
   delete(pessoa: Pessoa): void {

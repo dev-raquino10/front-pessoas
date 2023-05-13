@@ -29,6 +29,7 @@
         "aria-allowed-attr": "off",
         "aria-valid-attr-value": "off"
       }
-    ]
+    ],
+    "no-inline-styles": "off"
   }
 }
